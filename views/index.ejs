@@ -1,11 +1,60 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Play Kahoot without player limitations!" />
+    <meta
+            name="keywords"
+            content="education, platform, smart phone, tablet, mobile, social, inclusive, HTML5, classroom, engagement, play, game, fun, quiz, multi-player, pedagogy, learning model, learn, gamification."
+    />
+    <link rel="stylesheet" href="/public/style/global.css" />
+    <link rel="stylesheet" href="/public/style/start/style.css" />
+    <script src="/public/javascript/start/index.js" defer></script>
+
+    <title>BlackJack</title>
+</head>
+<body>
+<div class="background">
+    <img src="/public/images/symbols/pique.svg" class="square" alt="Background image of pique">
+    <img src="/public/images/symbols/coeur.svg" class="circle" alt="Background image of coeur">
+</div>
+<main class="main">
+    <form novalidate="" class="enter-pin-form join-form" onsubmit="event.preventDefault(); submitJoin(event)">
+        <input
+                name="gameId"
+                placeholder="Game PIN"
+                id="game-input"
+                class="enter-pin-input"
+                autocomplete="off"
+                value=""
+        />
+        <input
+                name="nickname"
+                placeholder="Nickname"
+                id="nickname-input"
+                class="enter-nickname-input"
+                autocomplete="off"
+                maxlength="25"
+                value=""
+        />
+        <button class="submit_button" type="submit">Join</button>
+    </form>
+
+    <span class="separatorOr">OR</span>
+
+    <form novalidate="" class="enter-pin-form create-form" onsubmit="event.preventDefault(); submitCreate(event)">
+        <label for="kahoot-input">Create a Game</label>
+        <button class="submit_button" type="submit">Create</button>
+    </form>
+</main>
+<footer class="footer">
+    <div>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JS</a>
+        >
+        <a href="https://www.python.org">PY</a> (goofy asf)
+    </div>
+</footer>
+</body>
 </html>
