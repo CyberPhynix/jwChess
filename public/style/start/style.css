@@ -21,7 +21,7 @@ main {
     z-index: 10;
 }
 
-.logo {
+.title {
     grid-area: title;
 }
 
@@ -45,11 +45,13 @@ main {
     grid-area: cErr;
 }
 
-/* Logo */
-img.logo {
+/* Title */
+.title {
     margin-bottom: 40px;
     max-width: 300px;
-    filter: brightness(0) invert(1); /* Make it white */
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
 }
 
 /* Forms */

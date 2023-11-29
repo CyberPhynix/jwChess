@@ -21,6 +21,7 @@
     <img src="/public/images/symbols/coeur.svg" class="circle" alt="Background image of coeur">
 </div>
 <main class="main">
+    <h1 class="title">BlackJack</h1>
     <form novalidate="" class="enter-pin-form join-form" onsubmit="event.preventDefault(); submitJoin(event)">
         <input
                 name="gameId"
@@ -41,11 +42,23 @@
         />
         <button class="submit_button" type="submit">Join</button>
     </form>
+    <% if (joinErr) {%>
+        <div class="error joinError">Not a valid Game PIN</div>
+    <% } %>
 
     <span class="separatorOr">OR</span>
 
     <form novalidate="" class="enter-pin-form create-form" onsubmit="event.preventDefault(); submitCreate(event)">
-        <label for="kahoot-input">Create a Game</label>
+        <label for="nickname_create">Create a Game</label>
+        <input
+                name="nickname_create"
+                placeholder="Nickname"
+                id="nickname_create"
+                class="enter-pin-input"
+                autocomplete="off"
+                maxlength="25"
+                value=""
+        />
         <button class="submit_button" type="submit">Create</button>
     </form>
 </main>

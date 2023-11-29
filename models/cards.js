@@ -6,6 +6,7 @@ class Card {
     }
 
     toString() {
+        if (this.hidden) return "XX";
         let value = this.value;
         if (value === 11) value = "J";
         else if (value === 12) value = "Q";

@@ -16,12 +16,12 @@ class Game {
         this.gid = generateGID();
         this.players = [];
         this.stack = new Stack();
-        this.dealer = new Player("Dealer");
+        this.dealer = new Player(0, "Dealer");
         this.players.push(this.dealer);
     }
 
-    addPlayer(name) {
-        this.players.push(new Player(name));
+    addPlayer(player) {
+        this.players.push(player);
     }
 
     removePlayer(sid) {
@@ -34,3 +34,8 @@ class Game {
         }
     }
 }
+
+module.exports = {
+    Player,
+    Game,
+};
