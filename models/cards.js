@@ -68,9 +68,18 @@ class Heap {
     get value() {
         let value = 0;
         for (let card of this.cards) {
-            value += card.value;
+            if (card.value === 14) value += 11;
+            else if (card.value > 10) value += 10;
+            else if (card.value >= 2 && card.value <= 10) value += card.value;
+        }
+        while (value > 21 && this.#hasAce()) {
+            value -= 10;
         }
         return value;
+    }
+
+    #hasAce() {
+        return this.cards.find((card) => card.value === 14);
     }
 
     addCard(card) {
