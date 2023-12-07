@@ -72,14 +72,16 @@ class Heap {
             else if (card.value > 10) value += 10;
             else if (card.value >= 2 && card.value <= 10) value += card.value;
         }
-        while (value > 21 && this.#hasAce()) {
+        let convertedAces = 0;
+        while (value > 21 && this.#hasAce(convertedAces)) {
             value -= 10;
+            convertedAces++;
         }
         return value;
     }
 
-    #hasAce() {
-        return this.cards.find((card) => card.value === 14);
+    #hasAce(converted = 0) {
+        return this.cards.filter((card) => card.value === 14) > converted;
     }
 
     addCard(card) {

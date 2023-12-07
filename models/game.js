@@ -72,8 +72,12 @@ class Game {
 
     playDealer() {
         this.dealer.heap.cards.map((card) => (card.hidden = false));
+        console.log(this.dealer.heap.cards);
+        console.log(this.dealer.heap.value);
         while (this.dealer.heap.value < 17) {
             this.dealer.heap.addCard(this.stack.removeCard());
+            console.log(this.dealer.heap.cards);
+            console.log(this.dealer.heap.value);
         }
     }
 
@@ -82,14 +86,19 @@ class Game {
 
         for (let player of this.players) {
             if (player.heap.value > 21) {
+                console.log(`${player.name} Busted ${player.heap.value} ${this.dealer.heap.value}`);
                 player.payout(0);
             } else if (this.dealer.heap.value > 21) {
+                console.log(`${player.name} Bank Busted ${player.heap.value} ${this.dealer.heap.value}`);
                 player.payout(player.betAmount * 2);
             } else if (player.heap.value > this.dealer.heap.value) {
+                console.log(`${player.name} Won (More points) ${player.heap.value} > ${this.dealer.heap.value}`);
                 player.payout(player.betAmount * 2);
             } else if (player.heap.value === this.dealer.heap.value) {
+                console.log(`${player.name} Push (Same points) ${player.heap.value} = ${this.dealer.heap.value}`);
                 player.payout(player.betAmount);
             } else {
+                console.log(`${player.name} Lost (Less points) ${player.heap.value} < ${this.dealer.heap.value}`);
                 player.payout(0);
             }
         }

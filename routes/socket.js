@@ -5,6 +5,7 @@ const { bet, hit, stand } = require("../gameManager");
 function routeSocket(app, io) {
     io.on("connection", (socket) => {
         log("Connection");
+        assignRoom();
 
         socket.on("disconnect", () => {
             log("Disconnection");
@@ -53,7 +54,20 @@ function routeSocket(app, io) {
                     break;
             }
 
-            io.emit("refresh", true);
+            io.to(game.gid).emit("refresh", true);
+        }
+
+        function assignRoom() {
+            var cookies = cookie.parse(socket.handshake.headers.cookie);
+
+            let game = cache.games.find((game) => game.players.find((player) => player.sid === cookies.sid));
+            if (!game) return;
+
+            // Check if req is player
+            let player = game.players.find((player) => player.sid === cookies.sid);
+            if (!player) return;
+
+            socket.join(game.gid);
         }
     });
 }

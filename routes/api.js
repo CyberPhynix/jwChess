@@ -42,7 +42,7 @@ router.get("/game/join", function (req, res, next) {
  * @property {number} gameData.gid
  * @property {"Betting" | "Playing"} gameData.gameState
  * @property {number} gameData.turn
- * @property {Array<{name: string, heap: Heap, betAmount: number, bank: number}>} gameData.players
+ * @property {Array<{name: string, heap: Heap, betAmount: number, bank: number, value: number}>} gameData.players
  * @property {{heap: Heap}} gameData.dealer
  *
  * @returns {I_PlayerData}
@@ -66,6 +66,7 @@ router.get("/game", function (req, res, next) {
                 heap: player.heap,
                 betAmount: player.betAmount,
                 bank: player.bank,
+                value: player.heap.value,
             };
         }),
         dealer: {
