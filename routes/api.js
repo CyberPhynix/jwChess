@@ -37,6 +37,15 @@ router.get("/game/join", function (req, res, next) {
  *
  * /api/game
  * => {player, game, gameData}
+ *
+ * @typedef {Object} I_PlayerData
+ * @property {number} gameData.gid
+ * @property {"Betting" | "Playing"} gameData.gameState
+ * @property {number} gameData.turn
+ * @property {Array<{name: string, heap: Heap, betAmount: number, bank: number}>} gameData.players
+ * @property {{heap: Heap}} gameData.dealer
+ *
+ * @returns {I_PlayerData}
  */
 router.get("/game", function (req, res, next) {
     // Check if req is game
@@ -47,7 +56,37 @@ router.get("/game", function (req, res, next) {
     let player = game.players.find((player) => player.sid === req.cookies.sid);
     if (!player) return res.status(401).send("No Permission");
 
-    res.json(game);
+    let gameData = {
+        gid: game.gid,
+        gameState: game.gameState,
+        turn: game.turn,
+        players: game.players.map((player) => {
+            return {
+                name: player.name,
+                heap: player.heap,
+                betAmount: player.betAmount,
+                bank: player.bank,
+            };
+        }),
+        dealer: {
+            heap: game.dealer.heap.cards.map((card) => {
+                if (card.hidden)
+                    return {
+                        value: 0,
+                        symbol: 0,
+                        hidden: true,
+                    };
+                return {
+                    value: card.value,
+                    symbol: card.symbol,
+                    hidden: card.hidden,
+                };
+            }),
+        },
+    };
+    // TODO DEV REMOVE!!!
+    if (req.query.dev) return res.json(game);
+    res.json(gameData);
 });
 
 module.exports = router;

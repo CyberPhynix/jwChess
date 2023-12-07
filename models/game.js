@@ -71,6 +71,7 @@ class Game {
     }
 
     playDealer() {
+        this.dealer.heap.cards.map((card) => (card.hidden = false));
         while (this.dealer.heap.value < 17) {
             this.dealer.heap.addCard(this.stack.removeCard());
         }
