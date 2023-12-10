@@ -81,7 +81,7 @@ class Heap {
     }
 
     #hasAce(converted = 0) {
-        return this.cards.filter((card) => card.value === 14) > converted;
+        return this.cards.filter((card) => card.value === 14).length > converted;
     }
 
     addCard(card) {
