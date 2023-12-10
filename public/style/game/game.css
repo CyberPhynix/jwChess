@@ -1,0 +1,246 @@
+.game {
+    width: 85%;
+    height: 85%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Player Containers */
+.player-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 50px;
+}
+
+/* Player */
+.player {
+    position: relative;
+    display: inline-block;
+
+    margin: 0 80px;
+}
+
+.player-name {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 240px;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    color: black;
+    background-color: white;
+    border-radius: 500px;
+    padding: 10px 25px;
+    box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+}
+
+.player-name-text {
+    margin: 0 20px;
+}
+
+.player-bet {
+    color: #298551;
+}
+
+.player-bank {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    color: white;
+    background-color: #298551;
+    border-radius: 500px;
+    padding: 5px 25px;
+    box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+}
+
+.bank-value {
+    margin-left: 10px;
+}
+
+.player-points {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    color: white;
+    background-color: #298551;
+    border-radius: 500px;
+    padding: 10px 25px;
+    box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+}
+
+.busted {
+    background-color: #d54c4c;
+}
+
+.player-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 100px;
+}
+
+/* Cards */
+.card {
+    margin-right: -100px;
+    position: relative;
+
+    width: 150px;
+    aspect-ratio: 2 / 3;
+
+    padding: 10px;
+
+    background-color: #fff5ec;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.card-value {
+    color: black;
+    font-size: 3rem;
+    font-family: CardCharacters, Montserrat, sans-serif;
+    font-weight: 700;
+
+    position: absolute;
+}
+
+.card-value-1 {
+    top: 12px;
+    left: 20px;
+}
+
+.card-value-2 {
+    bottom: 12px;
+    right: 20px;
+
+    transform: rotate(180deg);
+}
+
+.card-symbol {
+    width: 50%;
+}
+
+.texture {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #d06565;
+    background: url("/public/images/card_texture.png") repeat;
+    background-size: 20px;
+}
+
+/* Buttons */
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    box-sizing: border-box;
+
+    color: #53d78b;
+    border-color: #53d78b;
+
+    outline: none;
+    text-decoration: none;
+
+    background: transparent;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-bottom-width: 0.15rem;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    text-align: center;
+
+    padding: 0 2rem;
+    height: 5rem;
+    margin-left: 0.5em;
+
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: #3fa76c;
+    border-color: #3fa76c;
+    border-bottom-color: #348959;
+    color: #fff;
+}
+
+.bet-input {
+    box-sizing: border-box;
+
+    color: #53d78b;
+    border-color: #53d78b;
+
+    outline: none;
+    text-decoration: none;
+
+    background: transparent;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-bottom-width: 0.15rem;
+
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    text-align: center;
+
+    padding: 0 2rem;
+    height: 5rem;
+    margin-left: 0.5em;
+    width: 300px;
+}
+
+input.bet-input::-webkit-outer-spin-button,
+input.bet-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input.bet-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.hide {
+    display: none;
+}

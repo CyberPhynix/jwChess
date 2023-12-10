@@ -12,7 +12,7 @@ var app = require("../app");
 var routeSocket = require("../routes/socket");
 var debug = require("debug")("blackjack:server");
 var http = require("http");
-var socket = require("socket.io")
+var socket = require("socket.io");
 
 /**
  * Get port from environment and store in Express.
@@ -36,7 +36,7 @@ server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
 
-routeSocket(app, io)
+routeSocket(app, io);
 
 /**
  * Normalize a port into a number, string, or false.

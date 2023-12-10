@@ -1,0 +1,23 @@
+<div class="game">
+    <div id="dealer-container" class="dealer player-container">
+        <%- include("player", { name: "Dealer" }) %>
+    </div>
+    <div id="player-container" class="players player-container">
+        <%- include("player", { name: "Josh" }) %>
+        <%- include("player", { name: "Anton" }) %>
+    </div>
+    <div class="controls">
+        <input
+                type="number"
+                class="bet-input betting-phase"
+                id="bet-amount"
+                placeholder="Bet Amount"
+                min="1"
+                max="100"
+                step="1"
+        >
+        <button class="btn primary-btn betting-phase" id="bet">Bet</button>
+        <button class="btn playing-phase" id="hit">Hit</button>
+        <button class="btn playing-phase" id="stand">Stand</button>
+    </div>
+</div>

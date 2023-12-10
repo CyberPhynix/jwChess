@@ -1,0 +1,19 @@
+<div class="card">
+    <span class="card-value card-value-1" style="color: <%= red ? "red" : "black" %>"><%= value %></span>
+    <img class="card-symbol" src="/public/images/symbols/<%= symbol %>.svg" alt="<%= symbol %>">
+    <span class="card-value card-value-2" style="color: <%= red ? "red" : "black" %>"><%= value %></span>
+</div>
+
+<template id="hidden-card-template">
+    <div class="card">
+        <div class="texture"></div>
+    </div>
+</template>
+
+<template id="card-template">
+    <div class="card">
+        <span class="card-value card-value-1"></span>
+        <img class="card-symbol">
+        <span class="card-value card-value-2"></span>
+    </div>
+</template>

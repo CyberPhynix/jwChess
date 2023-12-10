@@ -1,0 +1,30 @@
+<div class="player">
+    <div id="cards" class="player-cards">
+        <%- include("card", { value: "7", symbol: "pique", red: false}) %>
+        <%- include("card", { value: "A", symbol: "coeur", red: true}) %>
+    </div>
+    <div id="value" class="player-points">17</div>
+    <div id="bank-container" class="player-bank">
+        Bank:
+        <span id="bank" class="bank-value">1000</span>
+    </div>
+    <div class="player-name">
+        <span id="name" class="player-name-text"><%= name %></span>
+        <span id="bet" class="player-bet">300</span>
+    </div>
+</div>
+
+<template id="player-template">
+    <div class="player">
+        <div id="cards" class="player-cards"></div>
+        <div id="value" class="player-points"></div>
+        <div id="bank-container" class="player-bank">
+            Bank:
+            <span id="bank" class="bank-value"></span>
+        </div>
+        <div class="player-name">
+            <span id="name" class="player-name-text"></span>
+            <span id="bet" class="player-bet"></span>
+        </div>
+    </div>
+</template>

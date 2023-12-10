@@ -1,0 +1,89 @@
+body {
+    background-color: var(--purple);
+    overflow: hidden;
+
+    color: white;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    flex-grow: 1;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header */
+header {
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+
+.game-pin {
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 0 20px;
+}
+
+/* Footer */
+.footer {
+    bottom: 0;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+}
+
+.footer span,
+.footer div {
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.footer a {
+    color: white;
+}
+
+/* Background */
+.background {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+}
+
+.square {
+    position: fixed;
+    pointer-events: none;
+    transform: rotate(45deg);
+    opacity: 0.1;
+    bottom: -15vmin;
+    left: -15vmin;
+    min-width: 55vmin;
+    min-height: 55vmin;
+    height: 200px;
+    width: 200px;
+}
+
+.circle {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.1;
+    min-width: 55vmin;
+    min-height: 55vmin;
+    top: -5vmin;
+    right: -10vmin;
+    height: 300px;
+    width: 300px;
+}

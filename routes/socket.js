@@ -36,7 +36,7 @@ function routeSocket(app, io) {
             let game = cache.games.find((game) => game.players.find((player) => player.sid === cookies.sid));
             if (!game) return;
 
-            // Check if req is player
+            // Check if req is player.ejs
             let player = game.players.find((player) => player.sid === cookies.sid);
             if (!player) return;
 
@@ -63,7 +63,7 @@ function routeSocket(app, io) {
             let game = cache.games.find((game) => game.players.find((player) => player.sid === cookies.sid));
             if (!game) return;
 
-            // Check if req is player
+            // Check if req is player.ejs
             let player = game.players.find((player) => player.sid === cookies.sid);
             if (!player) return;
 

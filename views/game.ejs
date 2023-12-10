@@ -1,77 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Socket.IO chat</title>
-    <style>
-        body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Play Kahoot without player limitations!" />
+        <meta
+            name="keywords"
+            content="education, platform, smart phone, tablet, mobile, social, inclusive, HTML5, classroom, engagement, play, game, fun, quiz, multi-player, pedagogy, learning model, learn, gamification."
+        />
+        <link rel="stylesheet" href="/public/style/global.css" />
+        <link rel="stylesheet" href="/public/style/game/style.css" />
+        <link rel="stylesheet" href="/public/style/game/game.css" />
+        <script src="/socket.io/socket.io.js" defer></script>
+        <script src="/public/javascript/game/game.js" defer></script>
+        <script src="/public/javascript/game/index.js" defer></script>
 
-        #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
-        input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
-        input:focus { outline: none; }
-        #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
-
-        #messages { list-style-type: none; margin: 0; padding: 0; }
-        #messages > li { padding: 0.5rem 1rem; }
-        #messages > li:nth-child(odd) { background: #efefef; }
-    </style>
-</head>
-<body>
-<ul id="messages"></ul>
-<form id="bet" action="">
-    <input id="bet-in" autocomplete="off" /><button>Bet</button>
-</form>
-<form id="hit" action="">
-    <button>Hit</button>
-</form>
-<form id="stand" action="">
-    <button>Stand</button>
-</form>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-
-    var betForm = document.getElementById('bet');
-    var input = document.getElementById('bet-in');
-
-    betForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (input.value) {
-            socket.emit('move', { move:
-                {
-                    type: 'Bet',
-                    betAmount: input.value
-                }
-            });
-            input.value = '';
-        }
-    });
-
-    var hitForm = document.getElementById('hit');
-    hitForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        socket.emit('move', { move:
-                {
-                    type: 'Hit'
-                }
-        });
-    });
-
-    var standForm = document.getElementById('stand');
-    standForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        socket.emit('move', { move:
-                {
-                    type: 'Stand'
-                }
-        });
-    });
-
-    socket.on('refresh', function(data) {
-        var item = document.createElement('li');
-        item.textContent = "Refreshed";
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
-    });
-</script>
-</body>
+        <title>BlackJack</title>
+    </head>
+    <body>
+        <div class="background">
+            <img src="/public/images/symbols/trefle.svg" class="square" alt="Background image of pique" />
+            <img src="/public/images/symbols/carreau.svg" class="circle" alt="Background image of coeur" />
+        </div>
+        <header>
+            <span class="game-pin"> Game-PIN: <span id="game-pin">Loading...</span> </span>
+        </header>
+        <main class="main">
+            <%- include("components/game") %>
+        </main>
+        <footer class="footer">
+            <div>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JS</a>
+                >
+                <a href="https://www.python.org">PY</a> (goofy asf)
+            </div>
+        </footer>
+    </body>
 </html>

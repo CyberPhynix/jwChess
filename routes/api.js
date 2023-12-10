@@ -36,7 +36,7 @@ router.get("/game/join", function (req, res, next) {
  * Game Data API
  *
  * /api/game
- * => {player, game, gameData}
+ * => {player.ejs, game, gameData}
  *
  * @typedef {Object} I_PlayerData
  * @property {number} gameData.gid
@@ -52,7 +52,7 @@ router.get("/game", function (req, res, next) {
     let game = cache.games.find((game) => game.players.find((player) => player.sid === req.cookies.sid));
     if (!game) return res.status(500).send("Game has not been found");
 
-    // Check if req is player
+    // Check if req is player.ejs
     let player = game.players.find((player) => player.sid === req.cookies.sid);
     if (!player) return res.status(401).send("No Permission");
 

@@ -58,3 +58,11 @@ Font imports
         local(""),
         url(//assets-cdn.kahoot.it/controller/v2/assets/montserrat-v25-latin-900.woff2) format("woff2");
 }
+
+@font-face {
+    font-family: CardCharacters;
+    font-style: normal;
+    src:
+        local(""),
+        url(/public/files/CARDC.TTF) format("TTF");
+}
