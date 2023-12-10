@@ -157,8 +157,7 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-color: #d06565;
-    background: url("/public/images/card_texture.png") repeat;
+    background: #d06565 url("/public/images/card_texture.png") repeat;
     background-size: 20px;
 }
 

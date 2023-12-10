@@ -1,4 +1,4 @@
-const { Card, Heap, Stack } = require("./cards");
+const { Heap, Stack } = require("./cards");
 const { generateValidSID, generateGID } = require("./sid");
 
 class Player {
@@ -72,12 +72,8 @@ class Game {
 
     playDealer() {
         this.dealer.heap.cards.map((card) => (card.hidden = false));
-        console.log(this.dealer.heap.cards);
-        console.log(this.dealer.heap.value);
         while (this.dealer.heap.value < 17) {
             this.dealer.heap.addCard(this.stack.removeCard());
-            console.log(this.dealer.heap.cards);
-            console.log(this.dealer.heap.value);
         }
     }
 
