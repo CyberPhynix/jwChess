@@ -170,6 +170,12 @@
     align-items: center;
 }
 
+.turn-bet-msg {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
 .btn {
     box-sizing: border-box;
 

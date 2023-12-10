@@ -14,21 +14,21 @@ function routeSocket(app, io) {
         socket.on("move", move);
 
         /**
-         * #@typedef {Object} I_PlayerData
-         *
          * @typedef {Object} I_Bet
          * @property {"Bet"} type - The type of move.
          * @property {number} betAmount - The bet amount.
-         *
+         */
+        /**
          * @typedef {Object} I_Hit
          * @property {"Hit"} type - The type of move.
-         *
+         */
+        /**
          * @typedef {Object} I_Stand
          * @property {"Stand"} type - The type of move.
-         *
+         */
+        /**
          * @param data
          * @param {I_Bet, I_Hit, I_Stand} data.move
-         * #@param {I_PlayerData} data.data
          */
         function move(data) {
             var cookies = cookie.parse(socket.handshake.headers.cookie);
@@ -36,25 +36,26 @@ function routeSocket(app, io) {
             let game = cache.games.find((game) => game.players.find((player) => player.sid === cookies.sid));
             if (!game) return;
 
-            // Check if req is player.ejs
+            // Check if req is player
             let player = game.players.find((player) => player.sid === cookies.sid);
             if (!player) return;
 
             logMsg(player, "Move", data.move);
 
+            let updated = true;
             switch (data.move.type) {
                 case "Bet":
-                    bet(data, player, game);
+                    updated = bet(data, player, game);
                     break;
                 case "Hit":
-                    hit(data, player, game);
+                    updated = hit(data, player, game);
                     break;
                 case "Stand":
-                    stand(data, player, game);
+                    updated = stand(data, player, game);
                     break;
             }
 
-            io.to(game.gid).emit("refresh", true);
+            if (updated) io.to(game.gid).emit("refresh", true);
         }
 
         function assignRoom() {
@@ -63,11 +64,12 @@ function routeSocket(app, io) {
             let game = cache.games.find((game) => game.players.find((player) => player.sid === cookies.sid));
             if (!game) return;
 
-            // Check if req is player.ejs
+            // Check if req is player
             let player = game.players.find((player) => player.sid === cookies.sid);
             if (!player) return;
 
             socket.join(game.gid);
+            io.to(game.gid).emit("refresh", true);
         }
     });
 }

@@ -1,18 +1,83 @@
 /**
  * @typedef {Object} I_PlayerData
- * @property {number} gameData.gid
- * @property {"Betting" | "Playing"} gameData.gameState
- * @property {number} gameData.turn
- * @property {Array<{name: string, heap: Heap, betAmount: number, bank: number, value: number}>} gameData.players
- * @property {{heap: Heap}} gameData.dealer
+ * @property {number} gid
+ * @property {"Betting" | "Playing"} gameState
+ * @property {number} turn
+ * @property {Array<{name: string, heap: Heap, betAmount: number, bank: number, value: number}>} players
+ * @property {{heap: Heap}} dealer
  *
  * @param {I_PlayerData} data
  */
 function refresh(data) {
+    console.log("Refresh \n", data);
+
     // game pin #game-pin
-    // hide either bet input or hit/stand buttons
+    let gamePin = document.querySelector("#game-pin");
+    gamePin.textContent = data.gid;
+
     // update dealer cards
+    let dealerContainer = document.querySelector("#dealer-container");
+    dealerContainer.innerHTML = "";
+    dealerContainer.appendChild(
+        createPlayerElement("Dealer", { cards: data.dealer.heap }, 0, 0, data.dealer.value, true),
+    );
+
     // update player cards
+    let playerContainer = document.querySelector("#player-container");
+    playerContainer.innerHTML = "";
+    for (let player of data.players) {
+        playerContainer.appendChild(
+            createPlayerElement(player.name, player.heap, player.betAmount, player.bank, player.value),
+        );
+    }
+
+    // hide either bet input or hit/stand buttons or state turn
+    let betInput = document.querySelector("#bet-amount");
+    let betButton = document.querySelector("#bet-button");
+    let hitButton = document.querySelector("#hit");
+    let standButton = document.querySelector("#stand");
+    let turnContainer = document.querySelector("#turn-msg-container");
+    let betContainer = document.querySelector("#bet-msg-container");
+
+    if (data.gameState === "Betting") {
+        if (data.players.find((player) => player.self).betAmount === 0) {
+            betInput.classList.remove("hide");
+            betButton.classList.remove("hide");
+            hitButton.classList.add("hide");
+            standButton.classList.add("hide");
+            turnContainer.classList.add("hide");
+            betContainer.classList.add("hide");
+        } else {
+            betInput.classList.add("hide");
+            betButton.classList.add("hide");
+            hitButton.classList.add("hide");
+            standButton.classList.add("hide");
+            turnContainer.classList.add("hide");
+
+            betContainer.querySelector("#bet-msg").textContent = data.players.find((player) => player.self).betAmount;
+
+            betContainer.classList.remove("hide");
+        }
+    } else if (data.gameState === "Playing") {
+        if (data.players[data.turn].self) {
+            betInput.classList.add("hide");
+            betButton.classList.add("hide");
+            hitButton.classList.remove("hide");
+            standButton.classList.remove("hide");
+            turnContainer.classList.add("hide");
+            betContainer.classList.add("hide");
+        } else {
+            betInput.classList.add("hide");
+            betButton.classList.add("hide");
+            hitButton.classList.add("hide");
+            standButton.classList.add("hide");
+            turnContainer.classList.remove("hide");
+            betContainer.classList.add("hide");
+
+            turnContainer.querySelector("#turn-msg").textContent = data.players[data.turn].name;
+        }
+    }
+
     // update player bet amounts
 }
 
@@ -36,6 +101,8 @@ function createPlayerElement(name, heap, betAmount, bank, value, hideBank = fals
     if (heap.cards.length === 0) {
         playerElement.querySelector(".player-cards").appendChild(createHiddenCardElement());
         playerElement.querySelector(".player-cards").appendChild(createHiddenCardElement());
+
+        playerElement.querySelector("#value").classList.add("hide");
     }
     heap.cards.forEach((card) => {
         playerElement
@@ -43,7 +110,6 @@ function createPlayerElement(name, heap, betAmount, bank, value, hideBank = fals
             .appendChild(card.hidden ? createHiddenCardElement() : createCardElement(card.value, card.symbol));
     });
 
-    console.log(playerElement);
     return playerElement;
 }
 

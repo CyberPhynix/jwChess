@@ -34,7 +34,7 @@ class Game {
     }
 
     start() {
-        if (this.gameState !== "Betting") return;
+        if (this.gameState !== "Betting") return false;
 
         this.gameState = "Playing";
         this.stack = new Stack(); // TODO: Maybe remove this line (+ realism; - card counting)
@@ -53,8 +53,8 @@ class Game {
     }
 
     hit(player) {
-        if (this.gameState !== "Playing") return;
-        if (player !== this.players[this.turn]) return;
+        if (this.gameState !== "Playing") return false;
+        if (player !== this.players[this.turn]) return false;
 
         player.heap.addCard(this.stack.removeCard());
         if (player.heap.value > 21) {
@@ -63,8 +63,8 @@ class Game {
     }
 
     stand(player) {
-        if (this.gameState !== "Playing") return;
-        if (player !== this.players[this.turn]) return;
+        if (this.gameState !== "Playing") return false;
+        if (player !== this.players[this.turn]) return false;
 
         this.turn++;
         if (this.turn >= this.players.length) this.end();

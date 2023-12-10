@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +14,7 @@
         <link rel="stylesheet" href="/public/style/game/style.css" />
         <link rel="stylesheet" href="/public/style/game/game.css" />
         <script src="/socket.io/socket.io.js" defer></script>
+        <script src="/public/javascript/packages/axios.js"></script>
         <script src="/public/javascript/game/game.js" defer></script>
         <script src="/public/javascript/game/index.js" defer></script>
 
@@ -36,5 +38,32 @@
                 <a href="https://www.python.org">PY</a> (goofy asf)
             </div>
         </footer>
+
+        <template id="player-template">
+            <div class="player">
+                <div id="cards" class="player-cards"></div>
+                <div id="value" class="player-points"></div>
+                <div id="bank-container" class="player-bank">
+                    Bank:
+                    <span id="bank" class="bank-value"></span>
+                </div>
+                <div class="player-name">
+                    <span id="name" class="player-name-text"></span>
+                    <span id="bet" class="player-bet"></span>
+                </div>
+            </div>
+        </template>
+        <template id="card-template">
+            <div class="card">
+                <span class="card-value card-value-1"></span>
+                <img class="card-symbol">
+                <span class="card-value card-value-2"></span>
+            </div>
+        </template>
+        <template id="hidden-card-template">
+            <div class="card">
+                <div class="texture"></div>
+            </div>
+        </template>
     </body>
 </html>

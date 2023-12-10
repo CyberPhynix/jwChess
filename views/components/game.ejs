@@ -9,15 +9,21 @@
     <div class="controls">
         <input
                 type="number"
-                class="bet-input betting-phase"
+                class="bet-input betting-phase hide"
                 id="bet-amount"
                 placeholder="Bet Amount"
                 min="1"
                 max="100"
                 step="1"
         >
-        <button class="btn primary-btn betting-phase" id="bet">Bet</button>
-        <button class="btn playing-phase" id="hit">Hit</button>
-        <button class="btn playing-phase" id="stand">Stand</button>
+        <button class="btn primary-btn betting-phase hide" id="bet-button">Bet</button>
+        <button class="btn playing-phase hide" id="hit">Hit</button>
+        <button class="btn playing-phase hide" id="stand">Stand</button>
+        <span id="turn-msg-container" class="turn-bet-msg hide">
+            Turn: <span id="turn-msg"></span>
+        </span>
+        <span id="bet-msg-container" class="turn-bet-msg hide">
+            Bet placed: <span id="bet-msg"></span>
+        </span>
     </div>
 </div>

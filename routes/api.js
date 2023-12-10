@@ -36,7 +36,7 @@ router.get("/game/join", function (req, res, next) {
  * Game Data API
  *
  * /api/game
- * => {player.ejs, game, gameData}
+ * => {player, game, gameData}
  *
  * @typedef {Object} I_PlayerData
  * @property {number} gameData.gid
@@ -52,7 +52,7 @@ router.get("/game", function (req, res, next) {
     let game = cache.games.find((game) => game.players.find((player) => player.sid === req.cookies.sid));
     if (!game) return res.status(500).send("Game has not been found");
 
-    // Check if req is player.ejs
+    // Check if req is player
     let player = game.players.find((player) => player.sid === req.cookies.sid);
     if (!player) return res.status(401).send("No Permission");
 
@@ -67,6 +67,7 @@ router.get("/game", function (req, res, next) {
                 betAmount: player.betAmount,
                 bank: player.bank,
                 value: player.heap.value,
+                self: player.sid === req.cookies.sid,
             };
         }),
         dealer: {
@@ -83,6 +84,7 @@ router.get("/game", function (req, res, next) {
                     hidden: card.hidden,
                 };
             }),
+            value: game.dealer.heap.cards.every((card) => !card.hidden) ? game.dealer.heap.value : 0,
         },
     };
     // TODO DEV REMOVE!!!
