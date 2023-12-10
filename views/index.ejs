@@ -45,6 +45,9 @@
             <% if (joinErr) { %>
             <div class="error joinError">Not a valid Game PIN</div>
             <% } %>
+            <% if (joinPlayerCountErr) { %>
+                <div class="error joinError">Game full (4 Players)</div>
+            <% } %>
 
             <span class="separatorOr">OR</span>
 

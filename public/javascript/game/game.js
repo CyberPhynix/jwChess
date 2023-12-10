@@ -147,20 +147,3 @@ function createHiddenCardElement() {
     let cardTemplate = document.querySelector("#hidden-card-template");
     return cardTemplate.content.cloneNode(true);
 }
-
-document.querySelector(".player-cards").appendChild(createCardElement(10, 3));
-document.querySelector(".player-cards").appendChild(createHiddenCardElement());
-document.querySelector("#player-container").appendChild(
-    createPlayerElement(
-        "test",
-        {
-            cards: [
-                { value: 7, symbol: 2, hidden: false },
-                { value: 7, symbol: 2, hidden: false },
-            ],
-        },
-        100,
-        -400,
-        24,
-    ),
-);

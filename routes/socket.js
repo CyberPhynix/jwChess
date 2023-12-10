@@ -11,6 +11,15 @@ function routeSocket(app, io) {
             log("Disconnection");
         });
 
+        socket.on("leave", () => {
+            var cookies = cookie.parse(socket.handshake.headers.cookie);
+
+            let game = cache.games.find((game) => game.players.find((player) => player.sid === cookies.sid));
+            if (!game) return;
+
+            io.to(game.gid).emit("refresh", true);
+        });
+
         socket.on("move", move);
 
         /**

@@ -51,3 +51,9 @@ async function getGameData() {
     });
     return data;
 }
+
+const leaveButton = document.querySelector("#leave");
+leaveButton.addEventListener("click", () => {
+    socket.emit("leave", true);
+    window.location.replace("/api/game/leave");
+});

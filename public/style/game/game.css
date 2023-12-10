@@ -210,6 +210,19 @@
     color: #fff;
 }
 
+.btn-red {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+
+    background: #d54c4c;
+    border-color: #d54c4c;
+    border-bottom-color: #b63b3b;
+    color: #fff;
+
+    height: 3rem;
+}
+
 .bet-input {
     box-sizing: border-box;
 

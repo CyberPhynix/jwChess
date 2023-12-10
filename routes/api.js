@@ -22,6 +22,8 @@ router.get("/game/create", function (req, res, next) {
  */
 router.get("/game/join", function (req, res, next) {
     if (cache.games.filter((game) => game.gid === req.query.gid).length < 1) return res.status(400).redirect("/?err=1");
+    if (cache.games.find((game) => game.gid === req.query.gid).players.length >= 4)
+        return res.status(400).redirect("/?err=2");
 
     let player = new Player(0, req.query.nickname);
     res.cookie("sid", player.sid);
@@ -30,6 +32,18 @@ router.get("/game/join", function (req, res, next) {
     game.addPlayer(player);
 
     res.redirect("/game");
+});
+
+router.get("/game/leave", function (req, res, next) {
+    let game = cache.games.find((game) => game.players.find((player) => player.sid === req.cookies.sid));
+    if (!game) return res.status(500).send("Game has not been found");
+
+    let player = game.players.find((player) => player.sid === req.cookies.sid);
+    if (!player) return res.status(401).send("No Permission");
+
+    game.removePlayer(player.sid);
+    res.clearCookie("sid");
+    res.redirect("/");
 });
 
 /**
@@ -87,8 +101,7 @@ router.get("/game", function (req, res, next) {
             value: game.dealer.heap.cards.every((card) => !card.hidden) ? game.dealer.heap.value : 0,
         },
     };
-    // TODO DEV REMOVE!!!
-    if (req.query.dev) return res.json(game);
+
     res.json(gameData);
 });
 
