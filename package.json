@@ -1,5 +1,5 @@
 {
-    "name": "blackjack",
+    "name": "jwchess",
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
@@ -8,14 +8,15 @@
         "dev": "nodemon ./bin/www",
         "format": "prettier --plugin=prettier-plugin-ejs --write \"{**/*,*}.{js,ts,jsx,tsx,html,css,ejs}\""
     },
-    "author": "Josh S",
+    "author": "Info LK 26 - MPG Trier",
     "license": "ISC",
     "dependencies": {
-        "cookie": "^0.6.0",
+        "chess.js": "^1.4.0",
+        "cookie": "^1.0.2",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
-        "ejs": "~2.6.1",
-        "express": "~4.16.1",
+        "ejs": "^3.1.10",
+        "express": "^4.21.2",
         "http-errors": "~1.6.3",
         "morgan": "~1.9.1",
         "socket.io": "^4.7.2"

@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== "production") {
 
 var app = require("../app");
 var routeSocket = require("../routes/socket");
-var debug = require("debug")("blackjack:server");
+var debug = require("debug")("jwchess:server");
 var http = require("http");
 var socket = require("socket.io");
 
