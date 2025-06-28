@@ -1,119 +1,84 @@
-const { Heap, Stack } = require("./cards");
-const { generateValidSID, generateGID } = require("./sid");
+var { generateGID, generateValidSID } = require("./sid");
+var Chess = require("chess.js").Chess;
 
 class Player {
-    constructor(bank, name = "Default Nickname") {
+    constructor(name = "Default Nickname") {
         this.sid = generateValidSID();
         this.name = name;
-        this.heap = new Heap();
-        this.bank = bank;
-        this.betAmount = 0;
-    }
-
-    bet(amount) {
-        this.bank -= amount;
-        this.betAmount = amount;
-    }
-
-    payout(amount) {
-        this.bank += amount;
-        this.betAmount = 0;
     }
 }
 
 class Game {
-    // Blackjack
-    constructor() {
+    constructor(white = null, black = null) {
         this.gid = generateGID();
-        this.players = [];
-        this.stack = new Stack();
-        this.dealer = new Player(0, "Dealer");
+        this.white = white;
+        this.black = black;
+        this.chess = new Chess();
 
-        this.gameState = "Betting";
-        this.turn = 0;
+        this.gameState = "Waiting"; // Waiting, Playing, Finished
     }
 
-    start() {
-        if (this.gameState !== "Betting") return false;
-
-        this.gameState = "Playing";
-        this.stack = new Stack(); // TODO: Maybe remove this line (+ realism; - card counting)
-        this.dealer.heap = new Heap();
-
-        let hiddenCard = this.stack.removeCard();
-        hiddenCard.hidden = true;
-        this.dealer.heap.addCard(hiddenCard);
-        this.dealer.heap.addCard(this.stack.removeCard());
-
-        for (let player of this.players) {
-            player.heap = new Heap();
-            player.heap.addCard(this.stack.removeCard());
-            player.heap.addCard(this.stack.removeCard());
-        }
+    getPlayer(sid) {
+        if (this.white && this.white.sid === sid) return this.white;
+        if (this.black && this.black.sid === sid) return this.black;
+        return null;
     }
 
-    hit(player) {
-        if (this.gameState !== "Playing") return false;
-        if (player !== this.players[this.turn]) return false;
+    addPlayer(player, color = "r") {
+        if (this.gameState !== "Waiting") return false;
 
-        player.heap.addCard(this.stack.removeCard());
-        if (player.heap.value > 21) {
-            this.stand(player);
-        }
-    }
-
-    stand(player) {
-        if (this.gameState !== "Playing") return false;
-        if (player !== this.players[this.turn]) return false;
-
-        this.turn++;
-        if (this.turn >= this.players.length) this.end();
-    }
-
-    playDealer() {
-        this.dealer.heap.cards.map((card) => (card.hidden = false));
-        while (this.dealer.heap.value < 17) {
-            this.dealer.heap.addCard(this.stack.removeCard());
-        }
-    }
-
-    end() {
-        this.playDealer();
-
-        for (let player of this.players) {
-            if (player.heap.value > 21) {
-                console.log(`${player.name} Busted ${player.heap.value} ${this.dealer.heap.value}`);
-                player.payout(0);
-            } else if (this.dealer.heap.value > 21) {
-                console.log(`${player.name} Bank Busted ${player.heap.value} ${this.dealer.heap.value}`);
-                player.payout(player.betAmount * 2);
-            } else if (player.heap.value > this.dealer.heap.value) {
-                console.log(`${player.name} Won (More points) ${player.heap.value} > ${this.dealer.heap.value}`);
-                player.payout(player.betAmount * 2);
-            } else if (player.heap.value === this.dealer.heap.value) {
-                console.log(`${player.name} Push (Same points) ${player.heap.value} = ${this.dealer.heap.value}`);
-                player.payout(player.betAmount);
+        // Check if player already exists
+        if (this.white || this.black) {
+            if (this.white) {
+                this.black = player;
             } else {
-                console.log(`${player.name} Lost (Less points) ${player.heap.value} < ${this.dealer.heap.value}`);
-                player.payout(0);
+                this.white = player;
             }
+            this.gameState = "Playing";
+            return true;
         }
 
-        this.gameState = "Betting";
-        this.turn = 0;
-    }
+        // Assign player to color
+        if (color === "w") {
+            this.white = player;
+        } else if (color === "b") {
+            this.black = player;
+        } else {
+            Math.random() < 0.5 ? (this.white = player) : (this.black = player);
+        }
 
-    addPlayer(player) {
-        this.players.push(player);
+        return true;
     }
 
     removePlayer(sid) {
-        this.players = this.players.filter((player) => player.sid !== sid);
+        if (this.white && this.white.sid === sid) {
+            this.white = null;
+        } else if (this.black && this.black.sid === sid) {
+            this.black = null;
+        }
+
+        if (!this.white && !this.black) {
+            this.gameState = "Finished";
+        }
     }
 
-    reset() {
-        for (let player of this.players) {
-            player.heap = new Heap();
+    move(move, player) {
+        if (this.gameState !== "Playing" || !player) return false;
+
+        // Check if the correct player is making the move
+        let turn = this.chess.turn();
+        let playerColor = this.white && this.white.sid === player.sid ? "w" : "b";
+        if (turn !== playerColor) return false;
+
+        // Validate the move
+        try {
+            this.chess.move(move);
+            if (this.chess.isGameOver()) {
+                this.gameState = "Finished";
+            }
+            return true;
+        } catch (err) {
+            return false;
         }
     }
 }

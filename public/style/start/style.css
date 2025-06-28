@@ -48,7 +48,6 @@ main {
 /* Title */
 .title {
     margin-bottom: 40px;
-    max-width: 300px;
     color: white;
     font-size: 3rem;
     font-weight: 700;
@@ -129,6 +128,56 @@ form > label {
     font-weight: 700;
 }
 
+.color-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    margin-bottom: 0.625rem;
+}
+
+.color-selection > input {
+    display: none !important;
+}
+.color-selection > label {
+    box-sizing: border-box;
+    width: 31%;
+    height: 3.2rem;
+    border: 0.125rem solid rgb(51, 51, 51);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.color-selection > label > img {
+    width: 2.5rem;
+}
+
+.color-selection > .rl_white {
+    background-color: rgb(51, 51, 51);
+    border-radius: 1rem 0 0 1rem;
+}
+
+.color-selection > .rl_random {
+    background: linear-gradient(90deg, rgb(51, 51, 51) 50%, rgb(256, 256, 256) 50%);
+}
+
+.color-selection > .rl_black {
+    background-color: rgb(256, 256, 256);
+    border-radius: 0 1rem 1rem 0;
+}
+
+.color-selection > input:checked + label {
+    border-width: 0.25rem;
+    border-color: #9a1d1d !important;
+}
+
 /* Separater */
 .separatorOr {
     margin: 0 30px;
@@ -195,7 +244,7 @@ form > label {
     height: 100vh;
 }
 
-.square {
+.bg1 {
     position: fixed;
     pointer-events: none;
     transform: rotate(45deg);
@@ -208,7 +257,7 @@ form > label {
     width: 300px;
 }
 
-.circle {
+.bg2 {
     position: fixed;
     pointer-events: none;
     opacity: 0.1;

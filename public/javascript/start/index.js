@@ -12,5 +12,9 @@ function submitCreate(e) {
 
     if (!nicknameInput.value) return;
 
-    window.location.replace(`/api/game/create?nickname=${nicknameInput.value}`);
+    // get radiobutton value
+    const colorInput = document.querySelector('input[name="color"]:checked');
+    const color = colorInput ? colorInput.value : "r";
+
+    window.location.replace(`/api/game/create?nickname=${nicknameInput.value}+&color=${color}`);
 }

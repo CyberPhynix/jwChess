@@ -2,6 +2,7 @@
 
 :root {
     --purple: #381272;
+    --green: #009900;
 }
 
 * {
@@ -22,6 +23,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
 
 /*
