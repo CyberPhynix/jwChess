@@ -8,9 +8,6 @@ socket.on("refresh", async function (data) {
     refresh(gameData);
 });
 
-/**
- * @param {String} move
- */
 function sendMove(move) {
     socket.emit("move", { move: move });
 }

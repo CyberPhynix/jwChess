@@ -3,8 +3,6 @@ let playerNameUp = document.querySelector("#player-name-up");
 let playerNameDown = document.querySelector("#player-name-down");
 let results = document.querySelector("#results");
 
-const chess = new Chess();
-
 let board = null;
 let yourTurn = false;
 let gameRunning = false;
@@ -21,17 +19,14 @@ function onDragStart(source, piece, position, orientation) {
 }
 
 function onDrop(source, target) {
-    // see if the move is legal
     let move = chess.move({
         from: source,
         to: target,
         promotion: "q", // NOTE: always promote to a queen for example simplicity
     });
 
-    // illegal move
     if (move === null) return "snapback";
 
-    // Emit move event
     sendMove(move.san);
 }
 
@@ -47,9 +42,12 @@ function init(gamedata) {
         pieceTheme: "public/images/pieces/{piece}.png",
         draggable: true,
         orientation: gamedata.white ? "white" : "black",
+        onMouseoverSquare: onMouseoverSquare(gamedata.white),
+        onMouseoutSquare: onMouseoutSquare,
         onDragStart: onDragStart,
         onDrop: onDrop,
         onSnapEnd: onSnapEnd,
+        onChange: removeAllHighlights,
     });
 }
 
