@@ -21,6 +21,7 @@
         <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
                 integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
                 crossorigin="anonymous" defer></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=content_copy" />
 
         <script src="/public/javascript/game/game.js" defer></script>
         <script src="/public/javascript/game/index.js" defer></script>
@@ -33,7 +34,9 @@
             <img src="/public/images/bg2.svg" class="bg2" alt="Background image of a black queen" />
         </div>
         <header>
-            <span class="game-pin"> Game-PIN: <span id="game-pin">Loading...</span> </span>
+            <span class="game-pin" id="copy-button">
+                Game-PIN: <span id="game-pin">Loading...</span> <span class="material-symbols-outlined copy-button">content_copy</span>
+            </span>
         </header>
         <main class="main">
             <div class="player-name" id="player-name-up">Loading...</div>

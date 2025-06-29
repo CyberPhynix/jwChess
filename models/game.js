@@ -16,6 +16,7 @@ class Game {
         this.chess = new Chess();
 
         this.gameState = "Waiting"; // Waiting, Playing, Finished
+        this.isEmpty = false;
     }
 
     getPlayer(sid) {
@@ -56,9 +57,10 @@ class Game {
         } else if (this.black && this.black.sid === sid) {
             this.black = null;
         }
+        this.gameState = "Finished";
 
         if (!this.white && !this.black) {
-            this.gameState = "Finished";
+            this.isEmpty = true;
         }
     }
 

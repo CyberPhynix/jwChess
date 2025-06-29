@@ -166,6 +166,7 @@ form > label {
 
 .color-selection > .rl_random {
     background: linear-gradient(90deg, rgb(51, 51, 51) 50%, rgb(256, 256, 256) 50%);
+    border-width: 0.125rem 0.05rem;
 }
 
 .color-selection > .rl_black {

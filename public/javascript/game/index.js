@@ -23,6 +23,14 @@ async function getGameData() {
     return data;
 }
 
+const copyButton = document.querySelector("#copy-button");
+copyButton.addEventListener("click", () => {
+    const gamePin = document.querySelector("#game-pin");
+    navigator.clipboard.writeText(gamePin.textContent).catch((err) => {
+        console.error("Failed to copy text: ", err);
+    });
+});
+
 const leaveButton = document.querySelector("#leave");
 leaveButton.addEventListener("click", () => {
     socket.emit("leave", true);

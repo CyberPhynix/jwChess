@@ -87,7 +87,7 @@ router.get("/game", function (req, res, next) {
 });
 
 function getGameStatus(game) {
-    if (!game.chess.isGameOver()) return null;
+    if (!game.chess.isGameOver() && game.gameState !== "Finished") return null;
 
     if (game.chess.isCheckmate()) {
         let winner = game.chess.turn() === "w" ? game.black.name : game.white.name;
@@ -101,7 +101,7 @@ function getGameStatus(game) {
     if (game.chess.isStalemate()) return "Draw by stalemate";
     if (game.chess.isDraw()) return "Draw";
 
-    return "Game over";
+    return "Game over - Opponent left the game";
 }
 
 module.exports = router;
