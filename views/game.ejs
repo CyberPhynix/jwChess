@@ -11,17 +11,38 @@
         <script src="/socket.io/socket.io.js" defer></script>
         <script src="/public/javascript/packages/axios.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" integrity="sha384-s3XgLpvmHyscVpijnseAmye819Ee3yaGa8NxstkJVyA6nuDFjt59u1QvuEl/mecz" crossorigin="anonymous" defer></script>
+        <!-- chess.js -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"
+            integrity="sha384-s3XgLpvmHyscVpijnseAmye819Ee3yaGa8NxstkJVyA6nuDFjt59u1QvuEl/mecz"
+            crossorigin="anonymous"
+            defer
+        ></script>
 
-        <link rel="stylesheet"
-              href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
-              integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
-              crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
-                integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
-                crossorigin="anonymous" defer></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=content_copy" />
+        <!-- chessboard.js-->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+            integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+            integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+            crossorigin="anonymous"
+            defer
+        ></script>
+
+        <!-- Google Icons-->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=content_copy"
+        />
 
         <script src="/public/javascript/game/highlightSquares.js" defer></script>
         <script src="/public/javascript/game/game.js" defer></script>
@@ -36,25 +57,24 @@
         </div>
         <header>
             <span class="game-pin" id="copy-button">
-                Game-PIN: <span id="game-pin">Loading...</span> <span class="material-symbols-outlined copy-button">content_copy</span>
+                Game-PIN: <span id="game-pin">Loading...</span>
+                <span class="material-symbols-outlined copy-button">content_copy</span>
             </span>
         </header>
         <main class="main">
             <div class="player-name" id="player-name-up">Loading...</div>
             <div id="board" class="game"></div>
             <div class="player-name" id="player-name-down">Loading...</div>
-            <div class="result hidden" id="results">
-                Results loading...
-            </div>
+            <div class="result hidden" id="results">Results loading...</div>
         </main>
         <footer class="footer">
             <div>
                 sponsored by
                 <a
-                        href="https://www.hockey-trier.de/wp-content/uploads/JW.jpg"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                >Jonathan Werner</a
+                    href="https://www.hockey-trier.de/wp-content/uploads/JW.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Jonathan Werner</a
                 >
             </div>
         </footer>
