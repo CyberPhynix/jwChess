@@ -37,12 +37,14 @@ router.get("/game/join", function (req, res, next) {
 
 router.get("/game/leave", function (req, res, next) {
     let game = cache.games.find((game) => game.getPlayer(req.cookies.sid));
-    if (!game) return res.status(500).send("Game has not been found");
+    if (!game) return res.status(500).redirect("/?err=3");
 
     let player = game.getPlayer(req.cookies.sid);
-    if (!player) return res.status(401).send("No Permission");
 
     game.removePlayer(player.sid);
+
+    if (game.isEmpty) cache.games.splice(cache.games.indexOf(game), 1);
+
     res.clearCookie("sid");
     res.redirect("/");
 });
@@ -61,13 +63,10 @@ router.get("/game/leave", function (req, res, next) {
  * @returns {I_GameData}
  */
 router.get("/game", function (req, res, next) {
-    // Check if req is game
     let game = cache.games.find((game) => game.getPlayer(req.cookies.sid));
     if (!game) return res.status(500).send("Game has not been found");
 
-    // Check if req is player
     let player = game.getPlayer(req.cookies.sid);
-    if (!player) return res.status(401).send("No Permission");
 
     let isWhite = !!game.white && game.white.sid === player.sid;
     let turn = game.chess.turn();

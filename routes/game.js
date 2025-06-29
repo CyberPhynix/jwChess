@@ -7,11 +7,7 @@ const { cache } = require("../data/cache");
  */
 router.get("/", function (req, res, next) {
     let game = cache.games.find((game) => game.getPlayer(req.cookies.sid));
-    if (!game) return res.status(500).send("Game has not been found");
-
-    // Check if req is player
-    let player = game.getPlayer(req.cookies.sid);
-    if (!player) return res.status(401).send("No Permission");
+    if (!game) return res.status(500).redirect("/?err=3");
 
     res.render("game");
 });
