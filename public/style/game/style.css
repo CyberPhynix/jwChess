@@ -53,8 +53,11 @@ header {
     position: absolute;
     height: 100%;
     width: 100%;
-    opacity: 0.3;
-    background: #53d78b !important;
+    opacity: 0.5;
+    border-radius: 100%;
+    background: #555;
+    transform: scale(0.3);
+    /*background: #53d78b !important;*/
     pointer-events: none;
 }
 

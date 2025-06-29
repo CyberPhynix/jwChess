@@ -20,8 +20,6 @@ function onMouseoverSquare(isWhite) {
 
         if (moves.length === 0 || piece.startsWith(isWhite ? "b" : "w")) return;
 
-        highlightSquare(square);
-
         for (let i = 0; i < moves.length; i++) {
             highlightSquare(moves[i].to);
         }
